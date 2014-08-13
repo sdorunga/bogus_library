@@ -1,8 +1,13 @@
-require_relative "bogus_library"
+require 'simplecov'
+SimpleCov.start do
+  add_filter "vendor"
+  add_group "Library", 'app'
+end
+require_relative "../bogus_library"
 require 'rspec'
 require 'pry'
 
-describe User do
+RSpec.describe User do
   let(:name) { "Joe" }
   let(:library) { double("Library") }
   subject    { described_class.new(name) }
@@ -18,7 +23,7 @@ describe User do
   end
 end
 
-describe LibraryCard do
+RSpec.describe LibraryCard do
   let(:default_limit) { 2 }
   let(:limit) { nil }
   let(:book) { [{ name: "Book" }] }
@@ -81,7 +86,7 @@ describe LibraryCard do
   end
 end
 
-describe Library do
+RSpec.describe Library do
   let(:user)  { double("User", name: "Joe") }
   let(:book1) { { name: "Old man and the sea" } }
   let(:book2) { { name: "The girl with the striped earrings" } }
