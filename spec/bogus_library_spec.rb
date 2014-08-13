@@ -105,9 +105,9 @@ RSpec.describe Library do
     end
 
     it 'adds the book to the library card' do
-      subject.checkout_book("Old man and the sea", user)
+      expect(library_card).to receive(:check_out).with([book1])
 
-      expect(library_card).to receive(:check_out)#.with([book1])
+      subject.checkout_book("Old man and the sea", user)
     end
 
     context 'when the borrowing limit is reached' do
@@ -116,9 +116,9 @@ RSpec.describe Library do
       end
 
       it 'does not add the book to the library card' do
-        subject.checkout_book("Old man and the sea", user)
-
         expect(library_card).to_not receive(:check_out).with([book1])
+
+        subject.checkout_book("Old man and the sea", user)
       end
     end
   end
@@ -133,9 +133,9 @@ RSpec.describe Library do
     end
 
     it 'returns an empty array' do
-      allow(library_card).to receive(:check_out).with([book1]).and_return([book1])
+      allow(library_card).to receive(:return_book).with([book1]).and_return([book2])
 
-      expect(subject.return_book("Old man and the sea", user)).to eq([book1])
+      expect(subject.return_book("Old man and the sea", user)).to eq([book2])
     end
   end
 end
