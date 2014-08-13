@@ -1,8 +1,5 @@
 require 'simplecov'
-SimpleCov.start do
-  add_filter "vendor"
-  add_group "Library", 'app'
-end
+SimpleCov.start { add_filter "vendor" } if ENV['COVERAGE'] == 'true'
 require_relative "../bogus_library"
 require 'rspec'
 require 'pry'
