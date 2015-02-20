@@ -1,4 +1,4 @@
-To set up the project just do:
+To set up the project just do: 
 
 ```
 git clone git@github.com:sdorunga1/bogus_library.git
